@@ -1,144 +1,143 @@
 # 🛍️ Sales Forecasting Dashboard 📈
 
-A complete **Data Analytics & Machine Learning** project to forecast weekly retail sales using time-series and regression models. This project demonstrates a practical data science pipeline: from **data collection and cleaning** to **modeling, visualization, and evaluation**, culminating in a business-ready forecast dashboard.
+A comprehensive **Data Analytics & Machine Learning** project to forecast weekly retail sales using time-series and regression models. This project covers the full pipeline: from **data collection and cleaning** to **model training, evaluation**, and **forecast visualization**, culminating in business-ready outputs for dashboards.
 
 ---
 
 ## 📚 Project Summary
 
-| Stage | Description |
-|-------|-------------|
-| 🗂️ Day 1 | Data loading, merging, and exploratory analysis |
-| 🔍 Day 2 | In-depth EDA and time-based trend insights |
-| 🧼 Day 3 | Data preprocessing, missing value handling, and feature extraction |
-| 🧪 Day 4 | Time-based train-test split (pre-July 2012 vs post-July 2012) |
-| 🧠 Day 5 | Model training (Random Forest) and basic predictions |
-| 📉 Day 6 | Actual vs Predicted graphing, saving forecast results |
-| 🧪 Day 7 | Error analysis using MAE, MAPE, visual diagnostics |
+| Stage      | Description                                   |
+|------------|-----------------------------------------------|
+| 🗂️ Day 1   | Data loading, merging, and exploratory analysis |
+| 🔍 Day 2   | In-depth exploratory data analysis (EDA) and time-based trend insights |
+| 🧼 Day 3   | Data preprocessing, handling missing values, feature engineering |
+| 🧪 Day 4   | Time-based train-test split (pre-July 2012 vs post-July 2012) |
+| 🧠 Day 5   | Model training (Random Forest) and initial predictions |
+| 📉 Day 6   | Visualization of Actual vs Predicted sales and saving forecast results |
+| 🧪 Day 7   | Error analysis with MAE, MAPE, and diagnostic plots |
+| 🧪 Day 8   | Multi-model training: Linear Regression, Random Forest, XGBoost, LightGBM |
+| 📊 Day 9   | Model comparison and feature importance visualization |
+| 🚀 Day 10  | Export final results for Power BI/Tableau dashboards and prepare README |
 
 ---
 
-## 🔧 Tools & Technologies
+🔑 Features
+Feature	Description
+Store	Store ID
+Dept	Department number
+Type	Store category (encoded A, B, C)
+Size	Store size (square feet)
+Temperature	Weekly average temperature
+Fuel_Price	Weekly fuel price
+CPI	Consumer Price Index
+Unemployment	Unemployment rate
+IsHoliday	Boolean holiday flag
+Month, Week, Year	Extracted from Date column
 
-- **Language**: Python  
-- **Libraries**: `pandas`, `matplotlib`, `seaborn`, `scikit-learn`  
-- **Model**: `RandomForestRegressor`  
-- **Development**: Jupyter Notebook  
-- **Data Source**: Walmart Kaggle Dataset  
+🧠 Modeling Approach
+Target Variable: Weekly_Sales
 
----
+Train-Test Split: Time-based (train < 2012-07-01, test >= 2012-07-01)
 
-## 🗃️ Datasets Used
+Models Used:
 
-- `train.csv`: Weekly sales of departments across stores  
-- `features.csv`: Includes macroeconomic and holiday information  
-- `stores.csv`: Metadata about store type and size  
+Linear Regression
 
----
+Random Forest Regressor
 
-## 🔑 Features Used
+XGBoost
 
-| Feature         | Description                             |
-|----------------|-----------------------------------------|
-| `Store`         | Store ID                                |
-| `Dept`          | Department number                       |
-| `Type`          | Store category (A, B, C)                |
-| `Size`          | Store size in square feet              |
-| `Temperature`   | Weekly average temperature              |
-| `Fuel_Price`    | Weekly fuel price                       |
-| `CPI`           | Consumer Price Index                    |
-| `Unemployment`  | Unemployment rate                       |
-| `IsHoliday`     | Boolean flag for holidays               |
-| `Month`, `Week`, `Year` | Extracted from `Date` column   |
+LightGBM
 
----
+Hyperparameter tuning applied to optimize Random Forest.
 
-## 🧠 Modeling Approach
+📈 Forecast Output & Error Analysis
+Visualized actual vs predicted sales trends over time.
 
-- **Target Variable**: `Weekly_Sales`  
-- **Train-Test Split**: Based on time (`train < 2012-07-01`, `test >= 2012-07-01`)  
-- **Model**: `RandomForestRegressor(n_estimators=100, random_state=42)`  
+Calculated key error metrics:
 
----
+MAE (Mean Absolute Error)
 
-## 📈 Forecast Output
+RMSE (Root Mean Squared Error)
 
-After model training, we generate forecasts and save them to:
+R² Score (Coefficient of Determination)
 
-**Actual vs Predicted Sales (Visualization):**
-A time-series line graph compares true vs forecasted sales, helping visually assess accuracy.
+APE (Absolute Percentage Error)
 
----
+Exported results in notebook/forecast_output.csv with columns:
+| Date | Store | Dept | Actual_Sales | Predicted_Sales | Absolute_Error | APE (%) |
 
-## 🧮 Error Analysis
+🧠 Key Insights from EDA
+Store Type A consistently leads in weekly sales performance.
 
-Metrics used:
-- **MAE (Mean Absolute Error)**
-- **MAPE (Mean Absolute Percentage Error)**
-- **Absolute Error distribution**
-- **Graphical analysis over time**
+Sales during holiday weeks show notable peaks or troughs, warranting special consideration.
 
-**Sample Forecast Table:**
+There is strong seasonality in sales with spikes in particular months.
 
-| Date       | Actual | Predicted | Error | APE (%) |
-|------------|--------|-----------|-------|---------|
-| 2012-07-01 | 20000  | 19800     | 200   | 1.00    |
-| 2012-07-08 | 22000  | 21500     | 500   | 2.27    |
-| ...        | ...    | ...       | ...   | ...     |
+Macroeconomic variables like CPI and Unemployment may impact sales trends.
 
----
+🖥️ Dashboard Status
+Core modeling and evaluation completed successfully.
 
-## 🧠 Key Insights from EDA
+Exported CSV ready for importing into BI tools like Power BI and Tableau for advanced visualization.
 
-- **Store Type A** consistently performs better in terms of weekly sales.
-- **Holiday weeks** show either high peaks or sharp drops — needs special treatment.
-- **Sales trends are seasonal**, with visible spikes during certain months.
-- **Economic indicators like CPI and Unemployment** vary, but their predictive power can be explored further.
+Interactive dashboard (Streamlit/Plotly Dash) under development.
 
----
-
-## 📁 Project Structure
-
+📁 Project Structure
+kotlin
+Copy
+Edit
 Sales Forecasting Dashboard/
 │
 ├── data/
-│ ├── features.csv
-│ ├── stores.csv
-│ └── train.csv
+│   ├── features.csv
+│   ├── stores.csv
+│   └── train.csv
 │
 ├── notebook/
-│ ├── sales_forecasting.ipynb
-│ └── forecast_output.csv
+│   ├── sales_forecasting.ipynb
+│   └── forecast_output.csv
 │
 ├── images/
-│ ├── sales_predictions.png
-│ ├── error_plot.png
-│ └── actual_vs_predicted.png
+│   ├── sales_predictions.png
+│   ├── error_plot.png
+│   └── actual_vs_predicted.png
+│
+├── requirements.txt
 │
 └── README.md
+📦 Dependencies
+The following packages are required (see requirements.txt):
 
-yaml
+nginx
 Copy
 Edit
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+xgboost
+lightgbm
+streamlit  
 
----
+🚀 Future Work & Roadmap
+Add lag and rolling window features (e.g., Sales_last_week, moving averages).
 
-## 🚀 What's Next?
+Include holiday proximity effects in feature engineering.
 
-### ✅ Planned for Upcoming Days:
+Extend hyperparameter tuning for XGBoost and LightGBM.
 
-- [ ] Add **lag features** (e.g., `Sales_last_week`, `Sales_last_month`)
-- [ ] Engineer **rolling averages** (e.g., 3-week/5-week moving average)
-- [ ] Incorporate **holiday proximity** effects
-- [ ] Try **XGBoost** or **LightGBM**
-- [ ] Perform **hyperparameter tuning**
-- [ ] Deploy a **Streamlit dashboard** or use **Plotly Dash** for interactivity
+Develop and deploy a Streamlit-based interactive dashboard.
 
----
+Explore real-time data streaming and alerting features.
 
-## 🎯 Final Goal
+📝 License & Data Usage
+Data is sourced from the Walmart Kaggle Competition.
 
-Build a fully deployable **Sales Forecasting Dashboard** that:
-- Forecasts sales per department
-- Visualizes trends and errors
-- Informs inventory and staffing decisions
+Please adhere to Kaggle's licensing and data use policies.
+
+📬 Contact
+For questions, feedback, or collaboration, feel free to reach out:
+Sameer
+sameer.developer0001@gmail.com (www.linkedin.com/in/sameer-khan-621ba422b)
